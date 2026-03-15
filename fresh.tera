@@ -1,0 +1,72 @@
+---
+whiskers:
+  version: "^2.8.0"
+  matrix:
+    - flavor
+  filename: "themes/catppuccin-{{ flavor.identifier }}.json"
+---
+{%- macro rgb(c) -%}
+[{{ c.rgb.r }}, {{ c.rgb.g }}, {{ c.rgb.b }}]
+{%- endmacro rgb -%}
+{
+  "name": "catppuccin-{{ flavor.identifier }}",
+  "editor": {
+    "bg": {{ self::rgb(c=base) }},
+    "fg": {{ self::rgb(c=text) }},
+    "cursor": {{ self::rgb(c=rosewater) }},
+    "selection_bg": {{ self::rgb(c=surface1) }},
+    "current_line_bg": {{ self::rgb(c=surface0) }},
+    "line_number_fg": {{ self::rgb(c=overlay0) }},
+    "line_number_bg": {{ self::rgb(c=base) }}
+  },
+  "ui": {
+    "tab_active_fg": {{ self::rgb(c=crust) }},
+    "tab_active_bg": {{ self::rgb(c=blue) }},
+    "tab_inactive_fg": {{ self::rgb(c=text) }},
+    "tab_inactive_bg": {{ self::rgb(c=surface1) }},
+    "tab_separator_bg": {{ self::rgb(c=base) }},
+    "status_bar_fg": {{ self::rgb(c=crust) }},
+    "status_bar_bg": {{ self::rgb(c=blue) }},
+    "prompt_fg": {{ self::rgb(c=crust) }},
+    "prompt_bg": {{ self::rgb(c=green) }},
+    "prompt_selection_fg": {{ self::rgb(c=text) }},
+    "prompt_selection_bg": {{ self::rgb(c=blue) }},
+    "popup_border_fg": {{ self::rgb(c=overlay0) }},
+    "popup_bg": {{ self::rgb(c=surface0) }},
+    "popup_selection_bg": {{ self::rgb(c=blue) }},
+    "popup_text_fg": {{ self::rgb(c=text) }},
+    "suggestion_bg": {{ self::rgb(c=surface0) }},
+    "suggestion_selected_bg": {{ self::rgb(c=blue) }},
+    "help_bg": {{ self::rgb(c=base) }},
+    "help_fg": {{ self::rgb(c=text) }},
+    "help_key_fg": {{ self::rgb(c=sky) }},
+    "help_separator_fg": {{ self::rgb(c=overlay0) }},
+    "help_indicator_fg": {{ self::rgb(c=red) }},
+    "help_indicator_bg": {{ self::rgb(c=base) }},
+    "split_separator_fg": {{ self::rgb(c=overlay0) }}
+  },
+  "search": {
+    "match_bg": {{ self::rgb(c=yellow) }},
+    "match_fg": {{ self::rgb(c=base) }}
+  },
+  "diagnostic": {
+    "error_fg": {{ self::rgb(c=red) }},
+    "error_bg": {%- if flavor.identifier == "mocha" -%} [53, 42, 54]{%- elif flavor.identifier == "macchiato" -%} [58, 45, 55]{%- elif flavor.identifier == "frappe" -%} [70, 52, 60]{%- elif flavor.identifier == "latte" -%} [245, 220, 225]{%- endif -%},
+    "warning_fg": {{ self::rgb(c=yellow) }},
+    "warning_bg": {%- if flavor.identifier == "mocha" -%} [53, 50, 42]{%- elif flavor.identifier == "macchiato" -%} [58, 55, 45]{%- elif flavor.identifier == "frappe" -%} [70, 62, 52]{%- elif flavor.identifier == "latte" -%} [250, 240, 220]{%- endif -%},
+    "info_fg": {{ self::rgb(c=sky) }},
+    "info_bg": {%- if flavor.identifier == "mocha" -%} [35, 45, 55]{%- elif flavor.identifier == "macchiato" -%} [40, 50, 65]{%- elif flavor.identifier == "frappe" -%} [48, 60, 75]{%- elif flavor.identifier == "latte" -%} [220, 240, 250]{%- endif -%},
+    "hint_fg": {{ self::rgb(c=overlay0) }},
+    "hint_bg": {{ self::rgb(c=base) }}
+  },
+  "syntax": {
+    "keyword": {{ self::rgb(c=mauve) }},
+    "string": {{ self::rgb(c=green) }},
+    "comment": {{ self::rgb(c=overlay0) }},
+    "function": {{ self::rgb(c=blue) }},
+    "type": {{ self::rgb(c=yellow) }},
+    "variable": {{ self::rgb(c=text) }},
+    "constant": {{ self::rgb(c=peach) }},
+    "operator": {{ self::rgb(c=sky) }}
+  }
+}
